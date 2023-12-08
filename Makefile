@@ -799,6 +799,13 @@ KBUILD_CFLAGS   += $(call cc-option, -fno-var-tracking-assignments)
 
 KBUILD_CFLAGS   += $(call cc-option, -Wvla)
 
+ifeq ($(WT_FINAL_RELEASE_KERNEL),yes)
+KBUILD_CFLAGS += -DWT_FINAL_RELEASE
+endif
+ifeq ($(WT_COMPILE_FACTORY_VERSION_KERNEL),yes)
+KBUILD_CFLAGS += -DWT_COMPILE_FACTORY_VERSION
+endif
+
 ifdef CONFIG_DEBUG_INFO
 ifdef CONFIG_DEBUG_INFO_SPLIT
 KBUILD_CFLAGS   += $(call cc-option, -gsplit-dwarf, -g)
